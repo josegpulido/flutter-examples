@@ -1,5 +1,7 @@
 // Required imports
 import 'package:flutter/material.dart';
+// Utilities
+import 'package:cuintle_app/utilities/stars-generator.dart';
 
 class DescriptionPlace extends StatelessWidget {
 
@@ -10,29 +12,6 @@ class DescriptionPlace extends StatelessWidget {
 
   // Constructor del Main Widget
   DescriptionPlace(this.title, this.description, this.score);
-
-  // Star Widget
-  Widget starWidget(bool fulfilled) {
-    return Icon(
-        fulfilled ? Icons.star : Icons.star_border,
-        color: fulfilled ? Color(0xFFf0e21f) : Color(0xFFd6d6d6)
-    );
-  }
-
-  // Stars Widget Generator
-  List<Widget> generateStars() {
-
-    // Recursive generation
-    List<Widget> state = [];
-    for (int i = 0; i < 5; i++) {
-      state.add(
-        starWidget(i < score)
-      );
-    }
-
-    // Returning generated stars list
-    return state;
-  }
 
   // Main Widget
   @override
@@ -56,10 +35,11 @@ class DescriptionPlace extends StatelessWidget {
     // Stars Widget
     final Container starsWidget = Container(
       child: Row(
-        children: generateStars()
+        children: StarsGenerator(score).build()
       )
     );
 
+    // Description Widget
     final Container descriptionWidget = Container(
       margin: EdgeInsets.only(
         top: 20.0
@@ -77,24 +57,17 @@ class DescriptionPlace extends StatelessWidget {
     );
 
     // Widget
-    final Container widget = Container(
-      margin: EdgeInsets.only(
-        top: 320.0,
-        left: 25.0,
-        right: 25.0
-      ),
-      child: Column(
-        children: [
-          Row(
-            children: <Widget> [
-              titleWidget,
-              starsWidget
-            ],
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          ),
-          descriptionWidget
-        ]
-      )
+    final Column widget = Column(
+      children: [
+        Row(
+          children: <Widget> [
+            titleWidget,
+            starsWidget
+          ],
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        ),
+        descriptionWidget
+      ]
     );
 
     // Return
