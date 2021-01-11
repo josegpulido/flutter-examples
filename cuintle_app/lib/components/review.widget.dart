@@ -24,7 +24,7 @@ class Review extends StatelessWidget {
       width: 62.0,
       height: 62.0,
       child: CircleAvatar(
-        backgroundImage: NetworkImage(photoUrl)
+        backgroundImage: AssetImage(photoUrl)
       )
     );
 
@@ -96,7 +96,7 @@ class Review extends StatelessWidget {
       ),
       margin: EdgeInsets.only(
         top: 10.0,
-        bottom: 10.0
+        bottom: 5.0
       ),
       padding: EdgeInsets.only(
         left: 13.0,

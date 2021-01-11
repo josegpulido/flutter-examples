@@ -47,13 +47,9 @@ flutter:
   # Images
   assets:
     # profile images
-    - assets/images/users/image_profile_1.jpg
-    - assets/images/users/image_profile_2.jpg
-    # images
-    - assets/images/places/atlixco_pueblo_magico.jpg
-    - assets/images/places/cenote_merida.jpg
-    - assets/images/places/playa_del_carmen.jpg
-    - assets/images/places/san_cristobal_de_las_casas.jpg
+    - assets/images/users/
+    # places images
+    - assets/images/places/
 
   # Fonts, how to do here --> https://flutter.dev/docs/cookbook/design/fonts#1-import-the-font-files
   fonts:
