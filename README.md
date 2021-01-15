@@ -2,4 +2,4 @@
 
 Repositorio con ejercicios en Flutter desde básico hasta avanzado.
 
-Probando signed commits.
+Probando signed commits desde Git.
