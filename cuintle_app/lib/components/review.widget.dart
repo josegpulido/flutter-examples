@@ -20,7 +20,7 @@ class Review extends StatelessWidget {
   Widget build(BuildContext context) {
 
     // User Photo Widget
-    final Container userPhoto = Container(
+    final Container userPhotoWidget = Container(
       width: 62.0,
       height: 62.0,
       child: CircleAvatar(
@@ -29,7 +29,7 @@ class Review extends StatelessWidget {
     );
 
     // User Details Widget
-    final Container userDetails = Container(
+    final Container userDetailsWidget = Container(
       margin: EdgeInsets.only(
         left: 15.0
       ),
@@ -51,7 +51,7 @@ class Review extends StatelessWidget {
                   )
                 ),
                 Row(
-                  children: StarsGenerator(score, 15.0).build()
+                  children: StarsBuilder(score, 15.0).build()
                 )
               ]
             )
@@ -107,8 +107,8 @@ class Review extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget> [
-          userPhoto,
-          userDetails
+          userPhotoWidget,
+          userDetailsWidget
         ]
       )
     );

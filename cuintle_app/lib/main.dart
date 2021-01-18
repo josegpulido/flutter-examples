@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:cuintle_app/components/description.widget.dart';
 import 'package:cuintle_app/components/review.widget.dart';
 import 'package:cuintle_app/components/mini-subtitle.widget.dart';
+import 'package:cuintle_app/components/header-appbar.widget.dart';
 
 void main() => runApp(MyApp());
 
@@ -78,10 +79,17 @@ class MyApp extends StatelessWidget {
                 )
               ]
             ),
-            Container(
-              width: double.infinity,
-              height: 250.0,
-              color: Color(0xFF4939c7)
+            HeaderAppbar(
+              /* Implementando named params: parámetros requeridos que además
+               * están ordenados con nombre.
+               */
+              photoUrl: 'assets/images/users/image_profile_2.jpg',
+              places: [
+                'assets/images/places/san_cristobal_de_las_casas.jpg',
+                'assets/images/places/atlixco_pueblo_magico.jpg',
+                'assets/images/places/cenote_merida.jpg',
+                'assets/images/places/playa_del_carmen.jpg'
+              ]
             )
           ]
         )

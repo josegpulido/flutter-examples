@@ -35,7 +35,7 @@ class DescriptionPlace extends StatelessWidget {
     // Stars Widget
     final Container starsWidget = Container(
       child: Row(
-        children: StarsGenerator(score).build()
+        children: StarsBuilder(score).build()
       )
     );
 

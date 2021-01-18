@@ -1,14 +1,14 @@
 // Required imports
 import 'package:flutter/material.dart';
 
-class StarsGenerator {
+class StarsBuilder {
 
   // Variables
   final int score;
   final double size;
 
   // Constructor
-  StarsGenerator(
+  StarsBuilder(
     // Parameters
     this.score,
     // Optional parameters
