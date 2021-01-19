@@ -1,6 +1,6 @@
 // Required imports
 import 'package:flutter/material.dart';
-// Widgets
+// Views
 import 'package:cuintle_app/components/description.widget.dart';
 import 'package:cuintle_app/components/review.widget.dart';
 import 'package:cuintle_app/components/mini-subtitle.widget.dart';

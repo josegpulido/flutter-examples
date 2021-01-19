@@ -2,6 +2,8 @@
 import 'package:flutter/material.dart';
 // Utilities
 import 'package:cuintle_app/utilities/stars-generator.dart';
+// Widgets
+import 'package:cuintle_app/components/nav-button.widget.dart';
 
 class DescriptionPlace extends StatelessWidget {
 
@@ -58,6 +60,7 @@ class DescriptionPlace extends StatelessWidget {
 
     // Widget
     final Column widget = Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Row(
           children: <Widget> [
@@ -66,7 +69,14 @@ class DescriptionPlace extends StatelessWidget {
           ],
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
         ),
-        descriptionWidget
+        descriptionWidget,
+        Container(
+          margin: EdgeInsets.only(
+            top: 25.0,
+            bottom: 10.0
+          ),
+          child: NavButton('Más información', Icons.east)
+        )
       ]
     );
 

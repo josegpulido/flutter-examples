@@ -1,5 +1,7 @@
 // Required imports
 import 'package:flutter/material.dart';
+// Widgets
+import 'package:cuintle_app/components/favorite-fab.widget.dart';
 
 class ImageCard extends StatelessWidget {
 
@@ -13,8 +15,8 @@ class ImageCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    // Widget
-    final Container widget = Container(
+    // Image Widget
+    final Container imageWidget = Container(
       width: 160.0,
       height: 160.0,
       margin: EdgeInsets.all(10.0),
@@ -33,6 +35,15 @@ class ImageCard extends StatelessWidget {
           image: AssetImage(imageUrl)
         )
       )
+    );
+
+    // Widget
+    final Stack widget = Stack(
+      alignment: Alignment(0.7, 1.1),
+      children: [
+        imageWidget,
+        FavoriteFab()
+      ]
     );
 
     // Return
