@@ -18,7 +18,7 @@ class _FavoriteFab extends State<FavoriteFab> {
   bool favorite = false;
 
   // Método que se ejecuta al disparar el evento 'onPressed'
-  void onPressedFab() {
+  void myCustomMethod() {
 
     // Modificando el widget cambiando su estado
     setState(() {
@@ -46,7 +46,7 @@ class _FavoriteFab extends State<FavoriteFab> {
       backgroundColor: Color(0xFFed204d),
       mini: true,
       tooltip: 'Favoritos',
-      onPressed: onPressedFab,
+      onPressed: myCustomMethod,
       child: Icon(
         this.favorite ? Icons.favorite : Icons.favorite_border,
         color: Colors.white,
