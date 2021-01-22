@@ -1,3 +1,13 @@
 {
-      "git.ignoreLimitWarning": true
+      "git.ignoreLimitWarning": true,
+      "editor.autoClosingBrackets": "never",
+      "editor.formatOnSave": false,
+      "[dart]": {
+            "editor.tabSize": 2,
+            "editor.insertSpaces": true,
+            "editor.detectIndentation": false,
+            "editor.suggest.insertMode": "replace",
+            "editor.formatOnSave": false,
+            "editor.formatOnPaste": false
+      }
 }
