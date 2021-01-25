@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'heroe.dart';
-import 'animal.dart';
 import 'vehiculo.dart';
 
 void main() => runApp(MyApp());
@@ -111,10 +110,12 @@ class MyApp extends StatelessWidget {
     */
 
     // Usando y llamando clases que implementan abstract
+    /*
     final spike = Perro();
     final tom = Gato();
     spike.sonido();
     tom.sonido();
+    */
 
     // Control de flujo
 

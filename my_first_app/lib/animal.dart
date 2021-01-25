@@ -1,41 +1,60 @@
 
-// Clase abstracta
+// Clase abstracta padre
+
 abstract class Animal {
-
-  // Propiedades obligatorias
-  int patas;
-
-  // Método obligatorio (solo inicializado, mas no hace nada)
-  void sonido();
-
+  int edad;
 }
 
-class Perro implements Animal {
+// Clases intermedias que heredan de la clase Animal (no instanciables)
 
-  /* Se pueden sobreescribir las 'reglas'. Animal obliga a Perro a
-   * tener las mismas propiedades y métodos.
-   */
-
-  @override
-  int patas;
-
-  @override
-  void sonido() {
-    print('Guau');
-  }
-
+abstract class Mamifero extends Animal {
+  void gestar() => print('Puedo gestar en mi vientre!');
 }
 
-class Gato implements Animal {
+abstract class Ave extends Animal {
+  void empollar() => print('Puedo empollar un huevo!');
+}
 
-  /* O simplemente implementarlas. Animal obliga a Gato a
-   * tener las mismas propiedades y métodos.
-   */
+abstract class Pez extends Animal {
+  void fecundar() => print('Puedo poner muchos huevos!');
+}
 
-  int patas;
+// Clases intermedias extras (no instanciables)
 
-  void sonido() {
-    print('Miaw');
-  }
+abstract class Volador {
+  void volar() => print('Volando...');
+}
+
+abstract class Caminante {
+  void caminar() => print('Caminando...');
+}
+
+abstract class Nadador {
+  void nadar() => print('Nadando...');
+}
+
+// Clases instanciables (with es la forma de usar mixins)
+
+class Delfin extends Mamifero with Nadador {}
+
+class Murcielago extends Mamifero with Caminante, Volador {}
+
+class Pato extends Ave with Caminante {}
+
+class Tiburon extends Pez with Nadador {}
+
+/*
+void main() {
+
+  final pato = Pato();
+  pato.caminar();
+  pato.edad = 5;
+  pato.empollar();
+
+  final murcielago = Murcielago();
+  murcielago.edad = 3;
+  murcielago.volar();
+  murcielago.gestar();
 
 }
+*/
