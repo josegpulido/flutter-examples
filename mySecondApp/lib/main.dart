@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 // Routes
 import 'package:mySecondApp/src/routes/routes.dart';
 // Widgets
-import 'package:mySecondApp/src/pages/alert_page.dart';
+import 'package:mySecondApp/src/pages/dialog_page.dart';
 
 void main() => runApp(MyApp());
 
@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
          * destinado a ser la página que se muestre dado un destino de navegación.
          */
         return MaterialPageRoute(
-          builder: (BuildContext context) => AlertPage()
+          builder: (BuildContext context) => DialogPage()
         );
       }
     );

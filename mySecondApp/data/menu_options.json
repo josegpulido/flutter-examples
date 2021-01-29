@@ -3,7 +3,7 @@
     {
       "route": "alert",
       "icon": "add_alert_outlined",
-      "title": "Alertas"
+      "title": "Dialogs"
     },
     {
       "route": "avatar",

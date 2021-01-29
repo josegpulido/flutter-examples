@@ -39,3 +39,4 @@ flutter:
   # Static resources
   assets:
     - data/menu_options.json
+    - assets/
