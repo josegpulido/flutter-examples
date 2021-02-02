@@ -1,0 +1,39 @@
+{
+  "routes": [
+    {
+      "route": "alert",
+      "icon": "add_alert_outlined",
+      "title": "Dialogs"
+    },
+    {
+      "route": "avatar",
+      "icon": "accessibility_outlined",
+      "title": "Avatars"
+    },
+    {
+      "route": "card",
+      "icon": "folder_open_outlined",
+      "title": "Cards"
+    },
+    {
+      "route": "animated_container",
+      "icon": "donut_large_outlined",
+      "title": "Animated Container"
+    },
+    {
+      "route": "inputs",
+      "icon": "input_outlined",
+      "title": "Inputs"
+    },
+    {
+      "route": "sliders",
+      "icon": "tune_outlined",
+      "title": "Sliders + Checks + Switches"
+    },
+    {
+      "route": "list",
+      "icon": "list",
+      "title": "List + Scroll"
+    }
+  ]
+}
