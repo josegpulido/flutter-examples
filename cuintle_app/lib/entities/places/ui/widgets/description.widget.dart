@@ -1,9 +1,9 @@
 // Required imports
 import 'package:flutter/material.dart';
 // Utilities
-import 'package:cuintle_app/utilities/stars-generator.dart';
+import 'package:cuintle_app/entities/places/ui/widgets/stars-generator.dart';
 // Widgets
-import 'package:cuintle_app/components/nav-button.widget.dart';
+import 'package:cuintle_app/widgets/nav-button.widget.dart';
 
 class DescriptionPlace extends StatelessWidget {
 

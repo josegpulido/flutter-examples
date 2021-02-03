@@ -1,8 +1,8 @@
 // Required imports
 import 'package:flutter/material.dart';
 // Views
-import 'package:cuintle_app/views/home.view.dart';
-import 'package:cuintle_app/views/prov-template.view.dart';
+import 'package:cuintle_app/entities/places/ui/screens/home.view.dart';
+import 'package:cuintle_app/entities/user/ui/screens/prov-template.view.dart';
 
 class NavigationPager extends StatefulWidget {
 

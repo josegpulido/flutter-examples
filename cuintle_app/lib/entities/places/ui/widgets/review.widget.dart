@@ -1,7 +1,7 @@
 // Required imports
 import 'package:flutter/material.dart';
 // Utilities
-import 'package:cuintle_app/utilities/stars-generator.dart';
+import 'package:cuintle_app/entities/places/ui/widgets/stars-generator.dart';
 
 class Review extends StatelessWidget {
 

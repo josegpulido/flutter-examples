@@ -1,7 +1,7 @@
 // Required imports
 import 'package:flutter/material.dart';
 // Widgets
-import 'package:cuintle_app/components/bottom-nav-bar.widget.dart';
+import 'package:cuintle_app/widgets/bottom-nav-bar.widget.dart';
 
 void main() => runApp(MyApp());
 

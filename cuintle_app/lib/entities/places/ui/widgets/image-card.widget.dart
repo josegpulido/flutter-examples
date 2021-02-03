@@ -1,7 +1,7 @@
 // Required imports
 import 'package:flutter/material.dart';
 // Widgets
-import 'package:cuintle_app/components/favorite-fab.widget.dart';
+import 'package:cuintle_app/entities/places/ui/widgets/favorite-fab.widget.dart';
 
 class ImageCard extends StatelessWidget {
 

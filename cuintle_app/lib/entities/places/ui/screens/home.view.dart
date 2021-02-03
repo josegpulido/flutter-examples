@@ -1,10 +1,10 @@
 // Required imports
 import 'package:flutter/material.dart';
 // Widgets
-import 'package:cuintle_app/components/description.widget.dart';
-import 'package:cuintle_app/components/review.widget.dart';
-import 'package:cuintle_app/components/mini-subtitle.widget.dart';
-import 'package:cuintle_app/components/header-appbar.widget.dart';
+import 'package:cuintle_app/entities/places/ui/widgets/description.widget.dart';
+import 'package:cuintle_app/entities/places/ui/widgets/review.widget.dart';
+import 'package:cuintle_app/widgets/mini-subtitle.widget.dart';
+import 'package:cuintle_app/entities/places/ui/widgets/header-appbar.widget.dart';
 
 class HomeView extends StatelessWidget {
 

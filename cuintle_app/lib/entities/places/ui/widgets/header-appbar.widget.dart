@@ -1,7 +1,7 @@
 // Required imports
 import 'package:flutter/material.dart';
 // Widgets
-import 'package:cuintle_app/components/horizontal-carousel.widget.dart';
+import 'package:cuintle_app/entities/places/ui/widgets/horizontal-carousel.widget.dart';
 
 class HeaderAppbar extends StatelessWidget {
 

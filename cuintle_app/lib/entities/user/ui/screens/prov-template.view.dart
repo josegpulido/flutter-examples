@@ -21,7 +21,7 @@ class ProvTemplateView extends StatelessWidget {
           width: 100.0,
           height: 100.0,
           alignment: Alignment.center,
-          child: Text('${title}')
+          child: Text(title)
         )
       ]
     );
