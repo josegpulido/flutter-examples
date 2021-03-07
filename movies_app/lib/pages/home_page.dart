@@ -16,6 +16,9 @@ class HomePage extends StatelessWidget {
   // Widget builder
   @override
   Widget build(BuildContext context) {
+    // Llamando al provider para descargar las películas aclamadas por la crítica
+    moviesProvider.getTopRated();
+    // Retornando widget
     return Scaffold(
       appBar: AppBar(
         title: Text('Películas en cines'),
@@ -53,7 +56,7 @@ class HomePage extends StatelessWidget {
   Widget _swipedCardsBuilder(BuildContext context) {
     // Constuyendo el widget de forma asíncrona con el FutureBuilder
     return FutureBuilder(
-      future: moviesProvider.getMoviesRequest('3/movie/now_playing'),
+      future: moviesProvider.getNowPlaying(),
       builder: (BuildContext context, AsyncSnapshot<List<Movie>> snapshot) {
         return CardsSwiper(
           movies: snapshot.hasData ? snapshot.data : []
@@ -64,6 +67,7 @@ class HomePage extends StatelessWidget {
 
   // Método que construye el inifinite scroll
   Widget _infiniteScrollBuilder(context) {
+    // Retornando widget
     return Container(
       width: double.infinity,
       child: Column(
@@ -78,11 +82,16 @@ class HomePage extends StatelessWidget {
               style: Theme.of(context).textTheme.headline6
             )
           ),
-          FutureBuilder(
-            future: moviesProvider.getMoviesRequest('3/movie/top_rated'),
+          StreamBuilder(
+            /**
+             * StreamBuilder funciona como un FutureBuilder, pero en lugar de
+             * solicitar un 'future:', solicita un 'stream:'
+             */
+            stream: moviesProvider.topRatedStream,
             builder: (BuildContext context, AsyncSnapshot<List<Movie>> snapshot) {
               return CardsHorizontal(
-                movies: snapshot.hasData ? snapshot.data : []
+                movies: snapshot.hasData ? snapshot.data : [],
+                getNextPage: moviesProvider.getTopRated,
               );
             }
           )
