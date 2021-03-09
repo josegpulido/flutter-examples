@@ -4,6 +4,7 @@ import 'package:http/http.dart' as http; // <-- Renombrando el import para hacer
 import 'dart:async'; // <-- Utilidades de generar Streams en Dart
 // Models
 import 'package:movies_app/models/movie_model.dart';
+import 'package:movies_app/models/actors_model.dart';
 
 class MoviesProvider {
 
@@ -22,7 +23,7 @@ class MoviesProvider {
   bool downloadInProgress = false;
 
   // Future que llama al API y retorna un objeto Response
-  Future<Movies> _requestToApi(String path, [ int page ]) async {
+  Future<Map<String, dynamic>> _requestToApi(String path, [ int page ]) async {
 
     /* Uri es una clase que permite gestionar interacciones con URLs. Como por
      * ejemplo, interactuar con una API, un URL, etc.
@@ -48,7 +49,7 @@ class MoviesProvider {
      */
 
     // Retornando Response del Future GET
-    return Movies.fromJsonList(body['results']);
+    return body;
   }
 
   // ===========================================================================
@@ -59,10 +60,12 @@ class MoviesProvider {
      * Haciendo petición GET y casteando la lista de peliculas al modelo Movies,
      * que es una lista de modelos Movie.
      */
-    final Movies movies = await _requestToApi('3/movie/now_playing', page);
-
-    // Retornando una lista de películas (modelo Movies)
-    return movies.items;
+    final Map<String, dynamic> body = await _requestToApi('3/movie/now_playing', page);
+    print(body['results']);
+    return [];
+    // final Movies movies = Movies.fromJsonList(body['results']);
+    // // Retornando una lista de películas (modelo Movies)
+    // return movies.items;
   }
 
   // ===========================================================================
@@ -78,7 +81,8 @@ class MoviesProvider {
        * Haciendo petición GET y casteando la lista de peliculas al modelo Movies,
        * que es una lista de modelos Movie.
        */
-      final Movies movies = await _requestToApi('3/movie/top_rated', currentTopRatedPage);
+      final Map<String, dynamic> body = await _requestToApi('3/movie/top_rated', currentTopRatedPage);
+      final Movies movies = Movies.fromJsonList(body['results']);
       // Guardando los resultados y uniendolos a la lista existente
       topRatedMovies = List.from(topRatedMovies)..addAll(movies.items);
       /**
@@ -128,4 +132,20 @@ class MoviesProvider {
     topRatedMovies = [];
     currentTopRatedPage = 1;
   }
+
+  // ===========================================================================
+  // Descargar el cast de una pelicula en específico a modo de Future ==========
+  // ===========================================================================
+  Future<List<Actor>> getCast(String movieId) async {
+    /**
+     * Haciendo petición GET y casteando la lista de actores al modelo Cast,
+     * que es una lista de modelos Actor.
+     */
+    final Map<String, dynamic> body = await _requestToApi('3/movie/${movieId}/credits');
+    final Cast cast = Cast.fromJsonList(body['cast']);
+
+    // Retornando una lista de actores (modelo Cast)
+    return cast.items;
+  }
+
 }

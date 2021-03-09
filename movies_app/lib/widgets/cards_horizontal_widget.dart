@@ -63,8 +63,8 @@ class CardsHorizontal extends StatelessWidget {
      */
     final PageView pageviewWidget = PageView.builder(
       pageSnapping: false,
-      controller: pageController,
       itemCount: movies.length, // Le actualiza el lenght de items al PageView
+      controller: pageController,
       itemBuilder: (BuildContext context, int i) {
         return _createTopRatedMovieCard(context, movies[i]);
       }
@@ -93,7 +93,8 @@ class CardsHorizontal extends StatelessWidget {
 
     final Size screenSize = MediaQuery.of(context).size;
 
-    return Column(
+    // Widget de card
+    final Column cardWidget = Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
@@ -122,6 +123,25 @@ class CardsHorizontal extends StatelessWidget {
           )
         )
       ]
+    );
+
+    /**
+     * Gesture detector es un Widget que permite controlar muchos tipos de
+     * gestos dentro de un área en específico.
+     */
+    return GestureDetector(
+      child: cardWidget,
+      onTap: () {
+        /**
+         * Navigator.pushNamed navega según el nombre de la ruta, definido
+         * en las rutas del Widget MaterialApp. Permite pasar argumentos a la
+         * ruta para luego cacharlos desde el Widget llamado.
+         * 
+         * Esta forma de pasar información útil al Widget es un sustituto al
+         * constructor convencional que recibe parámetros.
+         */
+        Navigator.pushNamed(context, 'details', arguments: movie);
+      }
     );
   }
 }

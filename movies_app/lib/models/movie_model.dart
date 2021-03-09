@@ -73,7 +73,7 @@ class Movie {
     originalLanguage = json['original_language'];
     title = json['title'];
     backdropPath = json['backdrop_path'];
-    popularity = json['popularity'];
+    popularity = json['popularity'].cast<double>();  // <-- Truco para obligar a castear a double
     voteCount = json['vote_count'];
     video = json['video'];
     voteAverage = json['vote_average'] / 1; // <-- Truco para obligar a castear a double
