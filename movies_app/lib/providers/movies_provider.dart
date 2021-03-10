@@ -25,6 +25,12 @@ class MoviesProvider {
   // Future que llama al API y retorna un objeto Response
   Future<Map<String, dynamic>> _requestToApi(String path, [ int page ]) async {
 
+    /**
+     * Completer es una clase que imita el comportamiento resolve/reject de
+     * un Promise. Esta es otra forma de manejar los Futures de forma más
+     * precisa.
+     */
+    final Completer completer = new Completer<Map<String, dynamic>>();
     /* Uri es una clase que permite gestionar interacciones con URLs. Como por
      * ejemplo, interactuar con una API, un URL, etc.
      * 
@@ -49,7 +55,8 @@ class MoviesProvider {
      */
 
     // Retornando Response del Future GET
-    return body;
+    completer.complete(body);
+    return completer.future;
   }
 
   // ===========================================================================
@@ -61,11 +68,9 @@ class MoviesProvider {
      * que es una lista de modelos Movie.
      */
     final Map<String, dynamic> body = await _requestToApi('3/movie/now_playing', page);
-    print(body['results']);
-    return [];
-    // final Movies movies = Movies.fromJsonList(body['results']);
-    // // Retornando una lista de películas (modelo Movies)
-    // return movies.items;
+    final Movies movies = Movies.fromJsonList(body['results']);
+    // Retornando una lista de películas (modelo Movies)
+    return movies.items;
   }
 
   // ===========================================================================

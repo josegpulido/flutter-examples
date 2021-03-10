@@ -16,8 +16,6 @@ class HomePage extends StatelessWidget {
   // Widget builder
   @override
   Widget build(BuildContext context) {
-    // Llamando al provider para descargar las películas aclamadas por la crítica
-    moviesProvider.getTopRated();
     // Retornando widget
     return Scaffold(
       appBar: AppBar(
@@ -67,6 +65,8 @@ class HomePage extends StatelessWidget {
 
   // Método que construye el inifinite scroll
   Widget _infiniteScrollBuilder(context) {
+    // Llamando al provider para descargar las películas aclamadas por la crítica
+    moviesProvider.getTopRated();
     // Retornando widget
     return Container(
       width: double.infinity,

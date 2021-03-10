@@ -33,13 +33,26 @@ class CardsSwiper extends StatelessWidget {
       layout: SwiperLayout.STACK,
       itemBuilder: (BuildContext context, int i) {
         // ClipRRect crea un Widget redondeado y rectangular
-        return ClipRRect(
-          borderRadius: BorderRadius.circular(10.0),
-          child: FadeInImage(
-            image: NetworkImage(movies[i].getPosterImageUrl()),
-            placeholder: AssetImage('assets/images/loading.gif'),
-            fit: BoxFit.cover
-          )
+        return GestureDetector(
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(10.0),
+            child: FadeInImage(
+              image: NetworkImage(movies[i].getPosterImageUrl()),
+              placeholder: AssetImage('assets/images/loading.gif'),
+              fit: BoxFit.cover
+            )
+          ),
+          onTap: () {
+            /**
+             * Navigator.pushNamed navega según el nombre de la ruta, definido
+             * en las rutas del Widget MaterialApp. Permite pasar argumentos a la
+             * ruta para luego cacharlos desde el Widget llamado.
+             * 
+             * Esta forma de pasar información útil al Widget es un sustituto al
+             * constructor convencional que recibe parámetros.
+             */
+            Navigator.pushNamed(context, 'details', arguments: movies[i]);
+          }
         );
       }
     );

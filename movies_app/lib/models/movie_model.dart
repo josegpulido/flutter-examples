@@ -27,6 +27,25 @@ class Movies {
 
 class Movie {
 
+  /*
+  {
+    poster_path: /orzPlWUbf0S5HeWmpP3TeHvduwn.jpg,
+    adult: false,
+    overview: ...,
+    release_date: 2021-02-11,
+    genre_ids: [28, 35, 10751, 16, 12],
+    id: 587807,
+    original_title: ...,
+    original_language: en,
+    title: Tom y Jerry,
+    backdrop_path: /fev8UFNFFYsD5q7AcYS8LyTzqwl.jpg,
+    popularity: 4099.159,
+    vote_count: 703
+    video: false,
+    vote_average: 7.8,
+  }
+  */
+
   // Variables
   String posterPath;
   bool adult;
@@ -58,7 +77,7 @@ class Movie {
     this.popularity,
     this.voteCount,
     this.video,
-    this.voteAverage,
+    this.voteAverage
   });
 
   // Named-constructor para construir un modelo Movie en base a un objeto JSON
@@ -67,13 +86,13 @@ class Movie {
     adult = json['adult'];
     overview = json['overview'];
     releaseDate = json['release_date'];
-    genreIds = json['genre_ids'].cast<int>(); // <-- Truco para obligar a castear a int
+    genreIds = json['genre_ids'].cast<int>(); // <-- Castear a lista de int
     id = json['id'];
     originalTitle = json['original_title'];
     originalLanguage = json['original_language'];
     title = json['title'];
     backdropPath = json['backdrop_path'];
-    popularity = json['popularity'].cast<double>();  // <-- Truco para obligar a castear a double
+    popularity = json['popularity'] / 1; // <-- Truco para obligar a castear a double
     voteCount = json['vote_count'];
     video = json['video'];
     voteAverage = json['vote_average'] / 1; // <-- Truco para obligar a castear a double
