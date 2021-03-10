@@ -19,18 +19,26 @@ class MoviesProvider {
   final String _apiUrl = 'api.themoviedb.org';
   final String _language = 'es-ES';
   List<Movie> topRatedMovies = [];
-  int currentTopRatedPage = 1;
+  int currentTopRatedPage = 0;
   bool downloadInProgress = false;
 
   // Future que llama al API y retorna un objeto Response
-  Future<Map<String, dynamic>> _requestToApi(String path, [ int page ]) async {
-
+  Future<Map<String, dynamic>> _requestToApi(String path, [ Map<String, String> params ]) async {
+    
     /**
      * Completer es una clase que imita el comportamiento resolve/reject de
      * un Promise. Esta es otra forma de manejar los Futures de forma más
      * precisa.
      */
     final Completer completer = new Completer<Map<String, dynamic>>();
+
+    // Adjuntando parámetros requeridos restantes
+    if (params == null) {
+      params = new Map<String, String>();
+    }
+    params['api_key'] = _apiKey;
+    params['language'] = _language;
+
     /* Uri es una clase que permite gestionar interacciones con URLs. Como por
      * ejemplo, interactuar con una API, un URL, etc.
      * 
@@ -38,21 +46,13 @@ class MoviesProvider {
      * es toda aquella ruta que se escribe luego de una url, como por
      * ejemplo /ruta/del/sitio.
      */
-    final Uri url = Uri.https(_apiUrl, path, {
-      'api_key': _apiKey,
-      'language': _language,
-      'page': (page != null ? page : 1).toString()
-    });
+    final Uri url = Uri.https(_apiUrl, path, params);
 
     // Haciendo petición GET al url y almacenando la respuesta en el objeto Response
     final http.Response response = await http.get(url);
 
     // Parseando el body del objeto Response (strinfified) a un objeto JSON
     final Map<String,dynamic> body = json.decode(response.body);
-    /* Extrayendo key 'results' de toda la información contenida en el 'body' del
-     * Response, ya que según la documentación de la API, 'results' contiene
-     * la lista de películas consultadas.
-     */
 
     // Retornando Response del Future GET
     completer.complete(body);
@@ -62,12 +62,12 @@ class MoviesProvider {
   // ===========================================================================
   // Descargar las películas actualmente en cines a modo de Future =============
   // ===========================================================================
-  Future<List<Movie>> getNowPlaying([ int page ]) async {
+  Future<List<Movie>> getNowPlaying() async {
     /**
      * Haciendo petición GET y casteando la lista de peliculas al modelo Movies,
      * que es una lista de modelos Movie.
      */
-    final Map<String, dynamic> body = await _requestToApi('3/movie/now_playing', page);
+    final Map<String, dynamic> body = await _requestToApi('3/movie/now_playing');
     final Movies movies = Movies.fromJsonList(body['results']);
     // Retornando una lista de películas (modelo Movies)
     return movies.items;
@@ -86,7 +86,9 @@ class MoviesProvider {
        * Haciendo petición GET y casteando la lista de peliculas al modelo Movies,
        * que es una lista de modelos Movie.
        */
-      final Map<String, dynamic> body = await _requestToApi('3/movie/top_rated', currentTopRatedPage);
+      final Map<String, dynamic> body = await _requestToApi('3/movie/top_rated', {
+        'page': currentTopRatedPage.toString()
+      });
       final Movies movies = Movies.fromJsonList(body['results']);
       // Guardando los resultados y uniendolos a la lista existente
       topRatedMovies = List.from(topRatedMovies)..addAll(movies.items);
@@ -153,4 +155,19 @@ class MoviesProvider {
     return cast.items;
   }
 
+  // ===========================================================================
+  // Descargar las películas actualmente en cines a modo de Future =============
+  // ===========================================================================
+  Future<List<Movie>> getQueriedMovies(String query) async {
+    /**
+     * Haciendo petición GET y casteando la lista de peliculas al modelo Movies,
+     * que es una lista de modelos Movie.
+     */
+    final Map<String, dynamic> body = await _requestToApi('3/search/movie', {
+      'query': query
+    });
+    final Movies movies = Movies.fromJsonList(body['results']);
+    // Retornando una lista de películas (modelo Movies)
+    return movies.items;
+  }
 }

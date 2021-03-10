@@ -7,6 +7,8 @@ import 'package:movies_app/widgets/cards_horizontal_widget.dart';
 import 'package:movies_app/providers/movies_provider.dart';
 // Models
 import 'package:movies_app/models/movie_model.dart';
+// Delegates
+import 'package:movies_app/search/search_delegate.dart';
 
 class HomePage extends StatelessWidget {
 
@@ -23,7 +25,18 @@ class HomePage extends StatelessWidget {
         actions: [
           IconButton(
             icon: Icon(Icons.search),
-            onPressed: () {}
+            onPressed: () {
+              /**
+               * showSearch es una clase provista por Flutter que facilita la
+               * implementación de una pantalla con lista en base a una
+               * búsqueda.
+               * 
+               * Requiere un context y un delegate, el cual es una clase provista
+               * también por Flutter que provee los métodos necesarios para
+               * manipular el comportamiento del buscador.
+               */
+              showSearch(context: context, delegate: DataSearch());
+            }
           )
         ]
       ),
