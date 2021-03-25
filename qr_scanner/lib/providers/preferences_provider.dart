@@ -4,7 +4,10 @@ import 'dart:async';
 
 class PreferencesProvider {
 
-  // Arquitectura singleton
+  /*
+   * Implementando arquitectura Singleton para utilizar la misma instancia
+   * en cualquier punto del app.
+   */
   static final PreferencesProvider _instance = PreferencesProvider._internal();
 
   factory PreferencesProvider() {
@@ -28,6 +31,14 @@ class PreferencesProvider {
 
   set theme(String type) {
     _preferences.setString('theme', type);
+  }
+
+  get lastPage {
+    return _preferences.getString('lastPage') ?? null;
+  }
+  
+  set lastPage(String type) {
+    _preferences.setString('lastPage', type);
   }
 
   // Stream controller para cambiar el theme de forma dinámica

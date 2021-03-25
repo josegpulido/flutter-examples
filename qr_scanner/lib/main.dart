@@ -3,17 +3,23 @@ import 'package:flutter/material.dart';
 // Pages
 import 'package:qr_scanner/pages/home_page.dart';
 import 'package:qr_scanner/pages/map_page.dart';
-import 'package:qr_scanner/pages/settings_page.dart';
 // Providers
 import 'package:qr_scanner/providers/preferences_provider.dart';
-import 'package:qr_scanner/providers/menu_provider.dart';
 import 'package:provider/provider.dart';
+// Notifiers
+import 'package:qr_scanner/notifiers/bottom_navigation_notifier.dart';
+import 'package:qr_scanner/notifiers/scan_records_notifier.dart';
 // Theme
 import 'package:qr_scanner/theme.dart';
  
 void main() async {
 
-  // Inicializando provider de preferencias del usuario
+  /**
+   * Recuperando las preferencias del usuario antes de iniciar el app. De esta
+   * manera, el main al ser un nivel superior que el runApp y no fallar al
+   * volverse un sync (puesto que devuelve void) entonces sí puedo llamar al 
+   * await y volver a todo el proceso síncrono.
+   */ 
   WidgetsFlutterBinding.ensureInitialized();
   await PreferencesProvider().initPreferences();
 
@@ -22,7 +28,7 @@ void main() async {
 
 class MyApp extends StatelessWidget {
 
-  // Providers
+  // Instanciando provider de preferencias
   final PreferencesProvider preferences = PreferencesProvider();
 
   // Widget builder
@@ -40,14 +46,17 @@ class MyApp extends StatelessWidget {
         return MultiProvider(
           providers: [
             /**
-             * ChangeNotifierProvider crea una instancia de MenuProvider, el cual
-             * tiene que extender de ChangeNotifier forzosamente. Cuando MenuProvider
+             * ChangeNotifierProvider usa la instancia de BottomNavigationNotifier
+             * para escuchar sus cambios. Cuando BottomNavigationNotifier
              * sufre un cambio, ChangeNotifierProvider le informa a MultiProvider
-             * que tiene que volver a renderizar al child, además manteniendo el
-             * estado de MenuProvider intacto.
+             * que tiene que volver a renderizar al child, manteniendo además el
+             * estado de BottomNavigationNotifier intacto.
              */
             ChangeNotifierProvider(
-              create: (BuildContext context) => new MenuProvider()
+              create: (BuildContext context) => BottomNavigationNotifier()
+            ),
+            ChangeNotifierProvider(
+              create: (BuildContext context) => ScanRecordsNotifier()
             )
           ],
           child: MaterialApp(
@@ -57,8 +66,7 @@ class MyApp extends StatelessWidget {
             // Definiendo rutas
             routes: {
               'home': (BuildContext context) => HomePage(),
-              'map': (BuildContext context) => MapPage(),
-              'settings': (BuildContext context) => SettingsPage()
+              'map': (BuildContext context) => MapPage()
             },
             /** 
              * Theme light y dark dinámico manejado por preferencias
@@ -73,9 +81,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-/**
- * Novedades del ejercicio:
- * - Shared Preferences para cambiar el theme de la aplicación a modo oscuro
- * - Implementación de BottomNavigationBar con provider de estado
- */

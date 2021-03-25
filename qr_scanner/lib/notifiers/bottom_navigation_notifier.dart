@@ -1,7 +1,7 @@
 // Required imports
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' show ChangeNotifier;
 
-class MenuProvider extends ChangeNotifier {
+class BottomNavigationNotifier extends ChangeNotifier {
 
   /* 
    * Esta clase trata de imitar una arquitectura Singleton, y simplemente
@@ -13,12 +13,15 @@ class MenuProvider extends ChangeNotifier {
    * un cambio sucedió.
    */
 
-  int _selectedNavigationIndex = 0;
+  // Variables del estado
+  int _selectedIndex = 0;
 
-  int get selectedNavigationIndex => this._selectedNavigationIndex;
+  // Getters y setters de las variables del estado
 
-  set selectedNavigationIndex(int i) {
-    this._selectedNavigationIndex = i;
+  int get selectedIndex => this._selectedIndex;
+
+  set selectedIndex(int i) {
+    this._selectedIndex = i;
     // Notificando a los dependientes que la propiedad privada cambió
     notifyListeners();
   }

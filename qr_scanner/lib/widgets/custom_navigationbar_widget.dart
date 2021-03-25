@@ -2,7 +2,8 @@
 import 'package:flutter/material.dart';
 // Providers
 import 'package:provider/provider.dart';
-import 'package:qr_scanner/providers/menu_provider.dart';
+// Notifiers
+import 'package:qr_scanner/notifiers/bottom_navigation_notifier.dart';
 
 class CustomNavigationBar extends StatelessWidget {
 
@@ -10,11 +11,11 @@ class CustomNavigationBar extends StatelessWidget {
   final List<Map<String, dynamic>> items = [
     {
       'icon': Icons.map,
-      'label': 'Mapa'
+      'label': 'Mapas'
     },
     {
-      'icon': Icons.compass_calibration_outlined,
-      'label': 'Direcciones'
+      'icon': Icons.link_outlined,
+      'label': 'Enlaces'
     },
     {
       'icon': Icons.settings_outlined,
@@ -27,17 +28,20 @@ class CustomNavigationBar extends StatelessWidget {
   Widget build(BuildContext context) {
 
     /**
-     * Recuperando el estado actual del index seleccionado al momento de
-     * renderizarse el CustomNavigationBar.
+     * Recuperando el estado actual del index seleccionado apenas CustomNavigationBar
+     * comience a renderizarse.
      * 
-     * En teoría, BottomNavigationBar actualiza el estado de MenuProvider,
-     * y main.dart escucha los cambios de MenuProvider para entonces renderizar
-     * en contenido de HomePage.
+     * En teoría, BottomNavigationBar actualiza el estado de BottomNavigationNotifier,
+     * y main.dart escucha los cambios de BottomNavigationNotifier para entonces renderizar
+     * a HomePage de nuevo.
+     * 
+     * Aquí se usa listen: true porque sí se requiere que se redibuje el Widget
+     * cuando el estado cambie.
      */
-    final MenuProvider menuProvider = Provider.of<MenuProvider>(context);
+    final BottomNavigationNotifier bottomNavigationNotifier = Provider.of<BottomNavigationNotifier>(context);
 
     return BottomNavigationBar(
-      currentIndex: menuProvider.selectedNavigationIndex,
+      currentIndex: bottomNavigationNotifier.selectedIndex,
       elevation: 0,
       items: items.map((Map<String, dynamic> item) {
         return BottomNavigationBarItem(
@@ -47,12 +51,12 @@ class CustomNavigationBar extends StatelessWidget {
       }).toList(),
       onTap: (int index) {
         /**
-         * Actualizar el estado de MenuProvider solo cuando se haya seleccionado
+         * Actualizar el estado de BottomNavigationNotifier solo cuando se haya seleccionado
          * un index distinto, y así evitar renderizar el mismo contenido al hacer
          * onTap sobre la página que actualmente se está viendo.
          */
-        if (index != menuProvider.selectedNavigationIndex) {
-          menuProvider.selectedNavigationIndex = index;
+        if (index != bottomNavigationNotifier.selectedIndex) {
+          bottomNavigationNotifier.selectedIndex = index;
         }
       }
     );

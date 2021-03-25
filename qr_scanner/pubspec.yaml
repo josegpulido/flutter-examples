@@ -12,9 +12,19 @@ dependencies:
   flutter:
     sdk: flutter
   # Preferencias del usuario
-  shared_preferences: "0.5.12+4"
+  shared_preferences:
   # Provider de estado
   provider: "4.3.3"
+  # Lector de códigos QR
+  flutter_barcode_scanner: "1.0.2"
+  # Localizador de archivos, usado para ubicar a SQLite en este ejemplo
+  path_provider:
+  # SQLite
+  sqflite: "1.3.2+4"
+  # Launcher de distintas utilidades de un móvil, como por ejemplo abrir sms, abrir urls, enviar correos, etc.
+  url_launcher:
+  # Google Maps
+  google_maps_flutter: "1.2.0"
 
 dev_dependencies:
   flutter_test:

@@ -1,18 +1,18 @@
 // Required imports
 import 'package:flutter/material.dart';
-// Notifiers
-import 'package:qr_scanner/notifiers/scan_records_notifier.dart';
 // Providers
 import 'package:provider/provider.dart';
+// Notifiers
+import 'package:qr_scanner/notifiers/scan_records_notifier.dart';
 // Utils
 import 'package:qr_scanner/utils.dart';
 
-class MapsPage extends StatelessWidget {
+class LinksPage extends StatelessWidget {
 
   // Widget builder
   @override
   Widget build(BuildContext context) {
-
+    
     /**
      * Recuperando el estado de ScanRecordsNotifier para usar sus métodos
      * únicamente.
@@ -60,7 +60,7 @@ class MapsPage extends StatelessWidget {
           ),
           child: ListTile(
             leading: Icon(
-              Icons.map
+              Icons.link_outlined
             ),
             title: Text(scanRecordsNotifier.scans[i].value),
             subtitle: Text('ID: ${scanRecordsNotifier.scans[i].id}'),
