@@ -57,12 +57,12 @@ Ordenadas de menor a mayor dificultad.
     - Vista y AppBar colapsables con Slivers.
     - Acoplamiento de Widget común a Slivers con SliverFillRemaining y SliverToBoxAdapter.
 * **/qr_scanner**. App con lector de códigos QR que puede escanear direcciones web o coordinadas geográficas. [Demostración](https://drive.google.com/file/d/1ygOTZMB7PTTRf6U1_fo6zJ_6GUju_lG8/view?usp=sharing)
-  - Implementación de preferencias de usuario (Shared Preferences) para cambiar el tema de la aplicación entre modo claro y modo oscuro.
+  - Implementación de preferencias de usuario (Shared Preferences) con patrón Singleton para cambiar el tema de la aplicación entre modo claro y modo oscuro.
   - Creación de modelos de forma fácil con (QuickType)[app.quicktype.io].
   - Implementación de SQLite y clase de operaciones CRUD.
   - Implementación de lector de códigos QR.
   - Creación de notificadores de estado para ejecutar modificaciones al UI de forma reactiva.
   - Implementación de Google Maps para Android.
-  - Widgets
+  - Implementación de Widgets varios:
     - Superficie desechable por gesto swipe con Dismissible y id único del Widget generado con UniqueKey.
 
