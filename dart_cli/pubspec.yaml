@@ -1,0 +1,22 @@
+# Este archivo configura aspectos básicos sobre el SDK de Dart,
+# dependencias del proyecto, entre otras cosas. Su simil en
+# Javascript es el package.json.
+
+name: dart_cli
+description: A sample command-line application.
+# version: 1.0.0
+# homepage: https://www.example.com
+# author: Your Name <your.email@example.com>
+
+# Definiendo la versión del SDK recomendada:
+environment:
+  sdk: '>=2.10.0 <3.0.0'
+
+# Definiendo las dependencias y paquetes que se incluirán en la app final (bundle)
+dependencies:
+  http: '0.13.0'
+
+# Definiendo las dependencias que solo se usarán durante el desarrollo del proyecto
+dev_dependencies:
+  pedantic: ^1.9.0
+  test: ^1.14.4

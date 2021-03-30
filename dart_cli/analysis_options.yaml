@@ -1,0 +1,24 @@
+# Este archivo define ciertas reglas de cómo
+# queremos que sea escrito el código. El simil de
+# Javascript de este archivo de configuración es tslint,
+# es decir, un archivo de configuración que le dice
+# al compilador qué reglas debe seguir el código y de acuerdo
+# a qué estándar de programación, como por ejemplo,
+# utilizar solo Camel Case en los nombres de las variables.
+#
+# Para más información, revisar la documentación:
+# --> http://dart-lang.github.io/linter/lints.
+
+include: package:pedantic/analysis_options.yaml
+
+# Reglas del linter
+linter:
+  rules:
+    # Verificar que todo esté escrito en Camel Case
+    - camel_case_types
+
+# Reglas del analyzer
+analyzer:
+  exclude:
+    # Excluyendo del analyzer todos los archivos bajo la carpeta /files
+    - lib/files/**
