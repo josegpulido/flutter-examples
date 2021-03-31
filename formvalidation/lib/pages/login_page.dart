@@ -1,5 +1,10 @@
 // Required imports
 import 'package:flutter/material.dart';
+// Blocs
+import 'package:formvalidation/bloc/login_bloc.dart';
+// Providers
+import 'package:formvalidation/bloc/my_bloc_provider.dart';
+import 'package:formvalidation/pages/home_page.dart';
 
 class LoginPage extends StatelessWidget {
 
@@ -12,6 +17,9 @@ class LoginPage extends StatelessWidget {
 
     // Variables
     final Size size = MediaQuery.of(context).size;
+
+    // Jalando al build la instancia del LoginBloc buscandolo en el árbol de widgets
+    final LoginBloc bloc = MyBlocProvider.of(context);
 
     // Fondo de pantalla
     final Widget backgroundWidget = Container(
@@ -51,48 +59,69 @@ class LoginPage extends StatelessWidget {
     );
     
     // Email del formulario
-    final Widget emailWidget = TextField(
-      autofocus: true,
-      keyboardType: TextInputType.emailAddress,
-      decoration: InputDecoration(
-        icon: Icon(
-          Icons.alternate_email_outlined,
-          color: Colors.black45
-        ),
-        labelText: 'Correo electrónico',
-        hintText: 'example@email.com'
-      )
+    final Widget emailWidget = StreamBuilder(
+      stream: bloc.emailStream,
+      builder: (_, AsyncSnapshot<String> snapshot) {
+        return TextField(
+          autofocus: true,
+          keyboardType: TextInputType.emailAddress,
+          decoration: InputDecoration(
+            icon: Icon(
+              Icons.alternate_email_outlined,
+              color: Colors.black45
+            ),
+            labelText: 'Correo electrónico',
+            hintText: 'example@email.com',
+            errorText: snapshot.error
+          ),
+          onChanged: bloc.changeEmail
+        );
+      }
     );
 
     // Password del formulario
-    final Widget passwordWidget = TextField(
-      obscureText: true,
-      decoration: InputDecoration(
-        icon: Icon(
-          Icons.lock_outline,
-          color: Colors.black45
-        ),
-        labelText: 'Contraseña'
-      )
+    final Widget passwordWidget = StreamBuilder(
+      stream: bloc.passwordStream,
+      builder: (_, AsyncSnapshot<String> snapshot) {
+        return TextField(
+          obscureText: true,
+          decoration: InputDecoration(
+            icon: Icon(
+              Icons.lock_outline,
+              color: Colors.black45
+            ),
+            labelText: 'Contraseña',
+            errorText: snapshot.error
+          ),
+          onChanged: bloc.changePassword
+        );
+      }
     );
 
     // Submit del formulario
-    final Widget submitWidget = ElevatedButton(
-      onPressed: () {},
-      style: ButtonStyle(
-        elevation: MaterialStateProperty.resolveWith((states) => 0.0),
-        shape: MaterialStateProperty.resolveWith((states) => RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10.0)
-        )),
-        backgroundColor: MaterialStateProperty.resolveWith((states) => Colors.teal)
-      ),
-      child: Container(
-        padding: EdgeInsets.symmetric(
-          horizontal: 40.0,
-          vertical: 15.0
-        ),
-        child: Text('Ingresar')
-      )
+    final Widget submitWidget = StreamBuilder(
+      stream: bloc.validationStream,
+      builder: (_, AsyncSnapshot<dynamic> snapshot) {
+        return ElevatedButton(
+          onPressed: !snapshot.hasData ? null : () {
+            Navigator.pushReplacementNamed(context, HomePage.routeName);
+          },
+          style: ButtonStyle(
+            elevation: MaterialStateProperty.resolveWith((states) => 0.0),
+            shape: MaterialStateProperty.resolveWith((states) => RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10.0)
+            )),
+            backgroundColor: MaterialStateProperty.resolveWith((states) => Colors.teal)
+          ),
+          child: Container(
+            padding: EdgeInsets.symmetric(
+              horizontal: 40.0,
+              vertical: 15.0
+            ),
+            child: Text('Ingresar')
+          )
+        );
+      }
     );
 
     // Formulario
