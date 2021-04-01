@@ -35,9 +35,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-/**
- * Novedades del ejercicio:
- * - Implementación de bloc para validación de formulario usando InheritedWidget,
- * StreamsTransformer, patrón Singleton y combinación de Streams con rxdart.
- */

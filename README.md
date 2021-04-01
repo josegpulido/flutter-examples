@@ -67,4 +67,5 @@ Ordenadas de menor a mayor dificultad.
   - Implementación de Google Maps para Android.
   - Implementación de Widgets varios:
     - Superficie desechable por gesto swipe con Dismissible y id único del Widget generado con UniqueKey.
-
+* **/formvalidation**. App con validación de formulario tipo login. [Demostración](https://drive.google.com/file/d/10WGnBTBpLMNDGYtQAHzJNQvdwikA6CkF/view?usp=sharing)
+  - Implementación de BLoC para validación de formulario usando InheritedWidget, StreamTransformer, patrón Singleton y combinación de Streams con rxdart.
